@@ -3,10 +3,10 @@ const fs = require('fs')
 const util = require('util')
 const inquirer = require('inquirer')
 const generateMarkdown = require('./utils/generateMarkdown')
-
+const openFile = util.promisify(fs.writeFile);
 
 // TODO: Create an array of questions for user input
-const questions = () =>{
+function questions () {
     return inquirer.prompt([
         {
             type: "input",
@@ -65,10 +65,21 @@ const questions = () =>{
     ]);
 };
 
-questions()
+
+async function init(){
+    const data = await questions();
+    const createFile = generateMarkdown(data)
+
+    await openFile('.README.md', createFile)
+    console.log('Created File')
+}
+
+init()
 
 // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
+// function writeToFile(generateMarkdown, data) {
+
+// }
 
 // // TODO: Create a function to initialize app
 // function init() {}
