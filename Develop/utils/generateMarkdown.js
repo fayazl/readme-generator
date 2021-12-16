@@ -35,7 +35,7 @@ function generateMarkdown(data) {
   <h2>##Usage</h2>
   ### ${data.usage}
 
-  <h2>##Contributing<h2>
+  <h2>##Contributing</h2>
   ### ${data.contributing}
 
   <h2>##Tests</h2>
